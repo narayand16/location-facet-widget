@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { MOCK_LOCATIONS } from './mock-data';
+import { LocationI } from './models/location.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'location-facet';
+  widgetTitle = 'Locations';
+  searchPlaceholder = 'Filter locations';
+  locationList: LocationI[] = [...MOCK_LOCATIONS].sort((a, b) =>
+    a.city.localeCompare(b.city)
+  );
 }

@@ -1,0 +1,84 @@
+<div id="widgetAccordion" #mainContainer>
+  <div class="d-flex justify-content-between align-items-center">
+    <h4>{{ title }}</h4>
+    <div>
+      <button
+        [disabled]="disableMinimizeBtn"
+        *ngIf="isShowMinimizeBtn"
+        class="btn btn-link"
+        (click)="toggleContainer('height')"
+      >
+        {{ minimized ? "Maximize" : "Minimize" }}
+      </button>
+      <button
+        [disabled]="disableCollapseBtn"
+        *ngIf="isShowCollapseBtn"
+        class="btn btn-link"
+        (click)="toggleContainer('width')"
+      >
+        {{ isCollapsed ? "Expand" : "Collapse" }}
+      </button>
+    </div>
+  </div>
+  <section #listRef>
+    <app-search
+      [searchPlaceholder]="searchPlaceholder"
+      (searchQuery)="onSearchQuery($event)"
+    ></app-search>
+    <span
+      class="d-inline-block my-2 clear-all-btn"
+      *ngIf="checkBoxCheckedCount > 0"
+      (click)="onClearAllClick()"
+      >X Clear
+      {{
+        checkBoxCheckedCount == locationsList.length
+          ? "All"
+          : checkBoxCheckedCount
+      }}</span
+    >
+    <span
+      class="d-inline-block my-2 clear-all-btn"
+      *ngIf="checkBoxCheckedCount === 0"
+      (click)="onSelectAllClick()"
+      >Select All
+    </span>
+    <div class="d-flex justify-content-between mt-2 location-wrapper">
+      <div class="pl-2">
+        <div
+          *ngFor="
+            let location of locationsList | filter: searchQuery;
+            let i = index
+          "
+        >
+          <div class="d-flex align-items-center p-2">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name="checkbox"
+              [id]="location.city + '_checkbox_' + i"
+              [checked]="location.isChecked"
+              [value]="location.isChecked"
+              (change)="onCheckboxChecked(location)"
+            />
+            <label
+              class="px-2"
+              [id]="location.city + '_' + i"
+              [for]="location.city + '_checkbox_' + i"
+            >
+              {{
+                (location.city || "Not Provided") +
+                  " - " +
+                  (location.country || "Not Provided")
+              }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="char-wrapper">
+        <div *ngFor="let char of chars" (click)="onCharacterClick(char)">
+          {{ char }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

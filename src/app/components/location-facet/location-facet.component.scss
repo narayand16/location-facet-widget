@@ -1,0 +1,26 @@
+$dodger-blue: dodgerblue;
+
+#widgetAccordion {
+  width: 25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 1.5rem;
+
+  .location-wrapper {
+    overflow-y: auto;
+    height: 25rem;
+    .char-wrapper {
+      position: fixed;
+      left: 21rem;
+      top: 9rem;
+    }
+    .char-wrapper > div {
+      cursor: pointer;
+    }
+  }
+
+  .clear-all-btn {
+    color: $dodger-blue;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

@@ -23,13 +23,6 @@ describe('AppComponent', () => {
   it(`should have as title 'location-facet'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('location-facet');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('location-facet app is running!');
+    expect(app.widgetTitle).toEqual('Locations');
   });
 });
